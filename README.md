@@ -5,7 +5,7 @@ Solving Graphical Combinatorics Problem
 All Possible Moves Formula is on 3rd slide of presentation. 
 
 All Possible Moves Amount: 
-n*n*(n)
+n^3
 
 Single Ball Moves Amount:
 n*n
