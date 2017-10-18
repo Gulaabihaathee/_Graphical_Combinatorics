@@ -8,7 +8,7 @@ All Possible Moves Amount:
 n**3
 
 Single Ball Moves Amount:
-n*n
+n**2
 
 Double Ball Moves Amount:
 2*(n-1)*n
