@@ -7,6 +7,9 @@ All Possible Moves Formula is on 3rd slide of presentation.
 All Possible Moves Amount: 
 n**3
 
+------------------------------------------------------------------------------------------------------------
+Partial Formulas:
+------------------------------------------------------------------------------------------------------------
 Single Ball Moves Amount:
 n**2
 
