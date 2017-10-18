@@ -1,7 +1,7 @@
 # _Graphical_Combinatorics
 ------------------------------------------------------------------------------------------------------------
 Solving Graphical Combinatorics Problem  
-------------------------------------------------------------------------------------------------------------
+
 All Possible Moves Formula is on 3rd slide of presentation. 
 
 All Possible Moves Amount: 
@@ -18,4 +18,4 @@ Triple Ball Moves Amount:
 
 Formula returning amount of edge elements for nxn matrix:
 4*n - 4
-------------------------------------------------------------------------------------------------------------
+
