@@ -1,7 +1,5 @@
 import numpy as np
 
-n=4
-
 #Ones Counter
 def Ones_Counter(GameBoard):
 	#Ones Amount for Position(i,j)
@@ -35,20 +33,33 @@ def CrossCombine(St_Pos_List):
 
 	return(Pos_Moves)
 
+#GameBoard Moves(All Possibilities From Every Positions)
+def GameMoves(Starting_Positions):
+	Game_Moves = []	
+	for tup in Starting_Positions:
+		if(GameBoard[tup[0]][tup[1]] == 1):
+			Game_Moves.append(CrossCombine(tup))
+	return(Game_Moves)
 
-#Algorithm Starting Positions
-Starting_Positions = []
+#Algorithm Starting Positions Generator 
+def SPGenerator(n):
+	#Algorithm Starting Positions
+	Starting_Positions = []
+	
+	for i in range(0,n):
+		for j in range(0,n):
+			Starting_Positions.append((i,j))
+	return(Starting_Positions)
 
+n=4
 #GameBoard creation
 GameBoard = np.array([[1]*n]*n)
 
-#Algorithm Starting Positions Generator 
-for i in range(0,n):
-	for j in range(0,n):
-		Starting_Positions.append((i,j))
+#Algorithm Starting Positions
+Starting_Positions = SPGenerator(n)
 
 #All Possible Moves Amount for current GameBoard
 PMA = np.sum(Ones_Counter(GameBoard))
 
-#Ones Counter List
+#Ones Counter List (V+H elements)
 OC_List = Ones_Counter(GameBoard)
