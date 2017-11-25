@@ -52,19 +52,24 @@ def SPGenerator(n):
 	return(Starting_Positions)
 
 #GM = GameMoves(SPGenerator(n))
-#Function Excluding GameMoves with zero(empty place instead a ball) 	
-#Problem with zeros in the middle, maybe copy of GM?
+#Function Excluding GameMoves with zero(empty place instead a ball)
 def ZeroCutter(GM):
 	for moves in range(0, len(GM)):
 		for move in range(0, len(GM[moves])):
 			for tup in range(0, len(GM[moves][move])):		
 				if(GameBoard[GM[moves][move][tup][0]][GM[moves][move][tup][1]] == 0):
-					GM[moves][move].remove(GM[moves][move][tup])
+					GM[moves][move][tup] = ()
 	
+	for i in range(0, len(GM)):
+		for j in range(0, len(GM[i])):
+			GM[i][j] = list(filter(None, GM[i][j]))
+
+
 	for i in range(0, len(GM)):
 		GM[i] = list(map(list,list(set(map(tuple, GM[i])))))
 
 	return(GM)
+
 
 #Show possible moves in coordinates(i,j) from ball in position of 1st tuple 
 def ShowMoves(GM):
@@ -74,6 +79,13 @@ def ShowMoves(GM):
 			index+=1
 			print("----",index," ", j)
 		print("*******************")
+
+#How to forbid crossing out last element?
+def IsThisTheEnd(GameBoard):
+	if(np.sum(GameBoard) == 1):
+		return(1)
+	else:
+		return(0)
 
 n=4
 #GameBoard creation
