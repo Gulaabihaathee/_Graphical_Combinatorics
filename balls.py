@@ -41,16 +41,6 @@ def GameMoves(Starting_Positions):
 			Game_Moves.append(CrossCombine(tup))
 	return(Game_Moves)
 
-#Algorithm Starting Positions Generator 
-def SPGenerator(n):
-	#Algorithm Starting Positions
-	Starting_Positions = []
-	
-	for i in range(0,n):
-		for j in range(0,n):
-			Starting_Positions.append((i,j))
-	return(Starting_Positions)
-
 #GM = GameMoves(SPGenerator(n))
 #Function Excluding GameMoves with zero(empty place instead a ball)
 def ZeroCutter(GM):
@@ -87,15 +77,49 @@ def IsThisTheEnd(GameBoard):
 	else:
 		return(0)
 
-n=4
 #GameBoard creation
-GameBoard = np.array([[1]*n]*n)
+def CreateGameBoard(n):
+	return(np.array([[1]*n]*n))
 
-#Algorithm Starting Positions
-Starting_Positions = SPGenerator(n)
+#Returns the list of GameBoards with every possible move
+def Scenarios_for_Game(GM):
+	it = 0
+	ScenarioTable = []
+	for i in GM:
+		for j in i:
+			ScenarioTable.append(CreateGameBoard(n))
+			for k in j:
+				ScenarioTable[it][k[0]][k[1]] = 0		
+			it += 1
+	return(ScenarioTable)
 
+#Algorithm Positions Generator 
+def PGenerator(n, GameBoard):
+	#Algorithm Starting Positions
+	Positions = []
+	
+	for i in range(0,n):
+		for j in range(0,n):
+			if(GameBoard[i][j] == 1):
+				Positions.append((i,j))
+	return(Positions)
+
+#___________________________________________________________________________
+#---------------------------------------------------------------------------
+#___________________________________________________________________________
+
+
+n = 4
+GameBoard = CreateGameBoard(n)
+GM = GameMoves(PGenerator(n, GameBoard))
+SC = Scenarios_for_Game(GM)
+
+"""
 #All Possible Moves Amount for current GameBoard
 PMA = np.sum(Ones_Counter(GameBoard))
 
 #Ones Counter List (V+H elements)
 OC_List = Ones_Counter(GameBoard)
+
+
+"""
