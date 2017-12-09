@@ -1,8 +1,10 @@
 import numpy as np
+import copy
 
-#Ones Counter
+#Ones Counter List (V+H elements)
 def Ones_Counter(GameBoard):
 	#Ones Amount for Position(i,j)
+	Starting_Positions = PGenerator(n, GameBoard)
 	OAPOSij = [] 
 	for p in range(0,len(Starting_Positions)):
 		i = Starting_Positions[p][0]
@@ -82,12 +84,15 @@ def CreateGameBoard(n):
 	return(np.array([[1]*n]*n))
 
 #Returns the list of GameBoards with every possible move
-def Scenarios_for_Game(GM):
+#All Possible Moves Amount for current GameBoard, np.sum(Ones_Counter(GameBoard))
+def Scenarios(GM, GameBoard):
 	it = 0
 	ScenarioTable = []
+	for p in range(0, np.sum(Ones_Counter(GameBoard))):
+		ScenarioTable.append(copy.copy(GameBoard))	
+
 	for i in GM:
 		for j in i:
-			ScenarioTable.append(CreateGameBoard(n))
 			for k in j:
 				ScenarioTable[it][k[0]][k[1]] = 0		
 			it += 1
@@ -111,15 +116,9 @@ def PGenerator(n, GameBoard):
 
 n = 4
 GameBoard = CreateGameBoard(n)
-GM = GameMoves(PGenerator(n, GameBoard))
-SC = Scenarios_for_Game(GM)
 
-"""
-#All Possible Moves Amount for current GameBoard
-PMA = np.sum(Ones_Counter(GameBoard))
-
-#Ones Counter List (V+H elements)
-OC_List = Ones_Counter(GameBoard)
+#Way to get scenarios
+#GameBoard -> PGenerator -> GameMoves -> Zerocutter -> Scenarios
+#ShowMoves(Scenarios(ZeroCutter(GameMoves(PGenerator(n, GameBoard))), GameBoard))
 
 
-"""
