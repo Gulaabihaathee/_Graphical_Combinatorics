@@ -4,7 +4,7 @@ import copy
 #Ones Counter List (V+H elements)
 def Ones_Counter(GameBoard):
 	#Ones Amount for Position(i,j)
-	Starting_Positions = PGenerator(n, GameBoard)
+	Starting_Positions = PGenerator(GameBoard)
 	OAPOSij = [] 
 	for p in range(0,len(Starting_Positions)):
 		i = Starting_Positions[p][0]
@@ -43,9 +43,10 @@ def GameMoves(Starting_Positions):
 			Game_Moves.append(CrossCombine(tup))
 	return(Game_Moves)
 
-#GM = GameMoves(SPGenerator(n))
+#GM = GameMoves(PGenerator(n, GameBoard))
 #Function Excluding GameMoves with zero(empty place instead a ball)
-def ZeroCutter(GM):
+#Updated cutting zeros for given GameBoard
+def ZeroCutter(GM, GameBoard):
 	for moves in range(0, len(GM)):
 		for move in range(0, len(GM[moves])):
 			for tup in range(0, len(GM[moves][move])):		
@@ -99,15 +100,20 @@ def Scenarios(GM, GameBoard):
 	return(ScenarioTable)
 
 #Algorithm Positions Generator 
-def PGenerator(n, GameBoard):
+def PGenerator(GameBoard):
 	#Algorithm Starting Positions
 	Positions = []
 	
-	for i in range(0,n):
-		for j in range(0,n):
+	for i in range(0,GameBoard.shape[0]):
+		for j in range(0,GameBoard.shape[0]):
 			if(GameBoard[i][j] == 1):
 				Positions.append((i,j))
 	return(Positions)
+
+#Scenarios function Shortcut
+def shortSC(GameBoard):
+	return(Scenarios(ZeroCutter(GameMoves(PGenerator(GameBoard)), GameBoard), GameBoard))
+
 
 #___________________________________________________________________________
 #---------------------------------------------------------------------------
@@ -119,6 +125,4 @@ GameBoard = CreateGameBoard(n)
 
 #Way to get scenarios
 #GameBoard -> PGenerator -> GameMoves -> Zerocutter -> Scenarios
-#ShowMoves(Scenarios(ZeroCutter(GameMoves(PGenerator(n, GameBoard))), GameBoard))
-
-
+#ShowMoves(Scenarios(ZeroCutter(GameMoves(PGenerator(GameBoard)), GameBoard), GameBoard))
