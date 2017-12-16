@@ -43,7 +43,6 @@ def GameMoves(Starting_Positions):
 			Game_Moves.append(CrossCombine(tup))
 	return(Game_Moves)
 
-#GM = GameMoves(PGenerator(n, GameBoard))
 #Function Excluding GameMoves with zero(empty place instead a ball)
 #Updated cutting zeros for given GameBoard
 def ZeroCutter(GM, GameBoard):
