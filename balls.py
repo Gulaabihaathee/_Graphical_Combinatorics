@@ -43,6 +43,7 @@ def GameMoves(Starting_Positions):
 			Game_Moves.append(CrossCombine(tup))
 	return(Game_Moves)
 
+#GM = GameMoves(PGenerator(n, GameBoard))
 #Function Excluding GameMoves with zero(empty place instead a ball)
 #Updated cutting zeros for given GameBoard
 def ZeroCutter(GM, GameBoard):
@@ -119,9 +120,10 @@ def shortSC(GameBoard):
 #___________________________________________________________________________
 
 
-n = 4
+n = 2
 GameBoard = CreateGameBoard(n)
 
 #Way to get scenarios
 #GameBoard -> PGenerator -> GameMoves -> Zerocutter -> Scenarios
 #ShowMoves(Scenarios(ZeroCutter(GameMoves(PGenerator(GameBoard)), GameBoard), GameBoard))
+
